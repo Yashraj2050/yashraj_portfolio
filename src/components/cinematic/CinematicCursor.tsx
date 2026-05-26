@@ -8,6 +8,14 @@ export function CinematicCursor() {
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setMounted(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -56,8 +64,8 @@ export function CinematicCursor() {
     };
   }, [mouseX, mouseY]);
 
-  // Don't render custom cursor on touch devices
-  if (typeof window !== 'undefined' && 'ontouchstart' in window) {
+  // Don't render custom cursor until mounted or on touch devices
+  if (!mounted || (typeof window !== 'undefined' && 'ontouchstart' in window)) {
     return null;
   }
 

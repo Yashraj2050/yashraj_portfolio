@@ -34,6 +34,9 @@ export interface CinematicState {
   mouseY: number;
   isTransitioning: boolean;
   reducedMotion: boolean;
+  activeVideo: string;
+  nextVideo: string | null;
+  wipePhase: 'idle' | 'wipe-in' | 'hold' | 'wipe-out';
 }
 
 export interface PageTransition {
