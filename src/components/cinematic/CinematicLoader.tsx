@@ -79,8 +79,8 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
           <motion.div
             className="absolute rounded-full pointer-events-none"
             style={{
-              width: 420,
-              height: 420,
+              width: 640,
+              height: 640,
               background:
                 'radial-gradient(circle, rgba(60,100,160,0.10) 0%, rgba(60,100,160,0.04) 50%, transparent 70%)',
             }}
@@ -107,8 +107,8 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
                 className="absolute inset-0 rounded-2xl"
                 style={{
                   boxShadow: '0 0 0 1px rgba(255,255,255,0.05)',
-                  margin: '-12px',
-                  borderRadius: '20px',
+                  margin: '-18px',
+                  borderRadius: '28px',
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: phase === 'logo' ? 1 : 0.4 }}
@@ -118,7 +118,7 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
               <img
                 src="/logo.png"
                 alt="YK"
-                className="w-20 h-20 object-contain"
+                className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-[clamp(140px,20vw,220px)] lg:h-[clamp(140px,20vw,220px)] object-contain"
                 style={{ filter: 'brightness(0.9)' }}
                 draggable={false}
               />
@@ -126,7 +126,7 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
 
             {/* Phase 2 — Label + progress bar */}
             <motion.div
-              className="flex flex-col items-center gap-5 mt-12"
+              className="flex flex-col items-center gap-5 mt-16"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: phase === 'progress' ? 1 : 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
