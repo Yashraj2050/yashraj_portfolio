@@ -113,12 +113,12 @@ export function CommandPalette() {
       {/* Trigger Button — top right */}
       <button
         onClick={toggle}
-        className="fixed top-5 right-5 z-50 flex items-center gap-2.5 px-3.5 py-2 rounded-lg border border-white/5 bg-[#08080c]/60 backdrop-blur-xl hover:border-white/15 transition-all cursor-pointer group"
+        className="fixed top-5 right-5 z-50 flex items-center gap-2.5 px-3.5 py-2 rounded-lg border border-white/8 bg-[#08080c]/70 backdrop-blur-xl hover:border-white/20 transition-all cursor-pointer group"
       >
-        <span className="text-white/30 text-[10px] font-code tracking-wider uppercase group-hover:text-white/60 transition-colors">
+        <span className="text-white/55 text-[10px] font-code tracking-wider uppercase group-hover:text-white/80 transition-colors">
           Navigate
         </span>
-        <kbd className="text-[9px] text-white/20 border border-white/10 rounded px-1.5 py-0.5 font-code">
+        <kbd className="text-[9px] text-white/35 border border-white/15 rounded px-1.5 py-0.5 font-code">
           ⌘K
         </kbd>
       </button>
@@ -134,7 +134,7 @@ export function CommandPalette() {
           transition={{ duration: 0.5 }}
         />
         <div className="h-4 w-px bg-white/10" />
-        <span className="text-white/25 text-[10px] font-code tracking-[0.3em] uppercase select-none">
+        <span className="text-white/45 text-[10px] font-code tracking-[0.3em] uppercase select-none capitalize">
           {currentPage}
         </span>
       </div>

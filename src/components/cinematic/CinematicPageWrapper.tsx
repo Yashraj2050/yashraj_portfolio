@@ -225,23 +225,23 @@ export function CinematicPageWrapper({ children }: CinematicPageWrapperProps) {
           onScroll={handleScroll}
           className="relative z-10 min-h-screen overflow-y-auto scrollbar-thin"
           style={{ height: '100vh' }}
-          initial={{ opacity: 0, y: 30, filter: 'blur(12px)' }}
+          initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
           animate={{
             opacity: 1,
             y: 0,
             filter: 'blur(0px)',
             transition: {
-              duration: 0.7,
-              delay: 0.15,
+              duration: 0.6,
+              delay: 0.1,
               ease: [0.16, 1, 0.3, 1],
             }
           }}
           exit={{
             opacity: 0,
-            y: -20,
-            filter: 'blur(12px)',
+            y: -15,
+            filter: 'blur(6px)',
             transition: {
-              duration: 0.4,
+              duration: 0.35,
               ease: [0.16, 1, 0.3, 1]
             }
           }}

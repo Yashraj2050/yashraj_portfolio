@@ -1,13 +1,13 @@
 'use client';
 
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { CinematicHeading, CinematicText } from '../CinematicTypography';
 
 const projects = [
   {
     id: 1,
-    title: 'Fiduscan (AI Deepfake & Content Detection)',
+    title: 'Fiduscan — AI Deepfake & Content Detection',
     category: 'AI / Blockchain',
     year: '2025 - Present',
     description: 'AI-powered deepfake media detection system paired with Ethereum smart contracts to ensure cryptographic provenance and authenticity validation.',
@@ -49,54 +49,25 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, index }: ProjectCardProps) {
-  const [, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [4, -4]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-4, 4]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-    setIsHovered(false);
-  };
 
   return (
     <motion.div
       ref={cardRef}
       className="group relative"
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      onMouseMove={handleMouseMove}
+      transition={{ delay: index * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{ perspective: 1000 }}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <motion.div
-        className="relative h-full p-8 rounded-xl border border-white/[0.04] overflow-hidden cursor-pointer bg-[#08080c]/50 backdrop-blur-md"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-        }}
-        whileHover={{ scale: 1.01 }}
+      <div
+        className="relative h-full p-7 rounded-xl border border-white/[0.04] overflow-hidden cursor-pointer bg-[#08080c]/50 backdrop-blur-md transition-all duration-500 group-hover:border-white/10"
       >
         {/* Hover glow */}
-        <motion.div
+        <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
           style={{
             background: 'radial-gradient(circle at center, rgba(60,100,160,0.05) 0%, transparent 60%)',
@@ -104,57 +75,62 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         />
 
         {/* Corner accents */}
-        <div className="absolute top-3 left-3 w-3 h-3 border-l border-t border-white/0 group-hover:border-white/10 transition-all duration-500 rounded-tl" />
-        <div className="absolute bottom-3 right-3 w-3 h-3 border-r border-b border-white/0 group-hover:border-white/10 transition-all duration-500 rounded-br" />
+        <div className="absolute top-3 left-3 w-3 h-3 border-l border-t border-white/0 group-hover:border-white/15 transition-all duration-500 rounded-tl" />
+        <div className="absolute bottom-3 right-3 w-3 h-3 border-r border-b border-white/0 group-hover:border-white/15 transition-all duration-500 rounded-br" />
 
         {/* Content */}
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-5">
             <div>
-              <span className="text-white/25 text-[10px] font-code tracking-[0.2em] uppercase">
+              <span className="text-white/40 text-[10px] font-code tracking-[0.2em] uppercase">
                 {project.category}
               </span>
-              <h3 className="text-white/85 text-lg font-display font-light mt-1.5">
+              <h3 className="text-white/90 text-xl font-display font-light mt-1.5 leading-snug">
                 {project.title}
               </h3>
             </div>
-            <span className="text-white/15 text-xs font-code">{project.year}</span>
+            <span className="text-white/25 text-xs font-code ml-4 shrink-0">{project.year}</span>
           </div>
 
           {/* Description */}
-          <p className="text-white/35 text-xs leading-relaxed mb-6 font-code">
+          <p className="text-white/50 text-sm leading-relaxed mb-5 font-code">
             {project.description}
           </p>
 
           {/* Metrics */}
-          <div className="grid grid-cols-3 gap-2 mb-6 border-t border-b border-white/[0.04] py-4">
+          <div className="grid grid-cols-3 gap-2 mb-5 border-t border-b border-white/[0.04] py-4">
             {Object.entries(project.metrics).map(([key, value]) => (
               <div key={key} className="text-left">
                 <div className="text-white/70 text-xs font-display font-light truncate">{value}</div>
-                <div className="text-white/15 text-[9px] font-code uppercase tracking-wider mt-0.5">{key}</div>
+                <div className="text-white/25 text-[9px] font-code uppercase tracking-wider mt-0.5">{key}</div>
               </div>
             ))}
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1.5 mb-4">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-0.5 text-[9px] text-white/30 border border-white/[0.04] rounded font-code uppercase tracking-wider"
+                className="px-2.5 py-1 text-[10px] text-white/40 border border-white/[0.05] rounded font-code uppercase tracking-wider"
               >
                 {tag}
               </span>
             ))}
           </div>
-        </div>
 
-        {/* Border highlight on hover */}
-        <motion.div
-          className="absolute inset-0 rounded-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        />
-      </motion.div>
+          {/* View CTA — appears on hover */}
+          <motion.div
+            className="flex items-center gap-1.5 text-[10px] font-code text-white/30 group-hover:text-white/60 transition-colors duration-300"
+            animate={{ x: isHovered ? 4 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <span className="uppercase tracking-wider">View details</span>
+            <span>→</span>
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   );
 }
@@ -164,25 +140,25 @@ export function ProjectsPage() {
 
   const categories = ['AI', 'Frontend', 'Freelance', 'Automation'];
   const filteredProjects = filter
-    ? projects.filter(p => p.category.toLowerCase().includes(filter.toLowerCase()))
+    ? projects.filter((p) => p.category.toLowerCase().includes(filter.toLowerCase()))
     : projects;
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-20 pb-28 md:pb-20">
       {/* Header */}
-      <section className="mb-16">
+      <section className="mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="text-white/30 text-[11px] font-code tracking-[0.35em] uppercase mb-8 block">
-            Repository
+          <span className="text-white/40 text-[11px] font-code tracking-[0.35em] uppercase mb-6 block">
+            Projects
           </span>
         </motion.div>
 
         <CinematicHeading as="h1" className="text-white mb-4 font-display" delay={0.1}>
-          <span className="block font-light text-4xl md:text-5xl lg:text-6xl">Deployments & Projects</span>
+          <span className="block font-light text-4xl md:text-5xl lg:text-6xl">Deployments & Work</span>
         </CinematicHeading>
 
         <CinematicText className="max-w-xl font-code text-sm" delay={0.2}>
@@ -192,17 +168,17 @@ export function ProjectsPage() {
 
       {/* Filters */}
       <motion.div
-        className="flex gap-2.5 mb-14 flex-wrap"
-        initial={{ opacity: 0, y: 20 }}
+        className="flex gap-2 mb-10 flex-wrap"
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ delay: 0.25, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <button
           onClick={() => setFilter(null)}
           className={`px-4 py-1.5 text-xs font-code rounded-md border cursor-pointer transition-all ${
             filter === null
-              ? 'border-white/15 text-white/75 bg-white/[0.04]'
-              : 'border-white/[0.04] text-white/35 hover:border-white/15'
+              ? 'border-white/20 text-white/80 bg-white/[0.05]'
+              : 'border-white/[0.06] text-white/40 hover:border-white/15 hover:text-white/60'
           }`}
         >
           All
@@ -213,8 +189,8 @@ export function ProjectsPage() {
             onClick={() => setFilter(cat)}
             className={`px-4 py-1.5 text-xs font-code rounded-md border cursor-pointer transition-all ${
               filter === cat
-                ? 'border-white/15 text-white/75 bg-white/[0.04]'
-                : 'border-white/[0.04] text-white/35 hover:border-white/15'
+                ? 'border-white/20 text-white/80 bg-white/[0.05]'
+                : 'border-white/[0.06] text-white/40 hover:border-white/15 hover:text-white/60'
             }`}
           >
             {cat}
@@ -223,7 +199,7 @@ export function ProjectsPage() {
       </motion.div>
 
       {/* Projects Grid */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-5">
         {filteredProjects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
@@ -231,32 +207,32 @@ export function ProjectsPage() {
 
       {/* Stats */}
       <motion.section
-        className="mt-24 py-16 border-t border-white/[0.04]"
+        className="mt-20 py-14 border-t border-white/[0.04]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-left md:text-center">
           <div>
-            <div className="text-3xl font-display font-light text-white/75">10+</div>
-            <div className="text-white/20 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Fiverr Deployments</div>
+            <div className="text-3xl font-display font-light text-white/80">10+</div>
+            <div className="text-white/30 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Fiverr Deployments</div>
           </div>
           <div>
-            <div className="text-3xl font-display font-light text-white/75">100%</div>
-            <div className="text-white/20 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Code Integrity</div>
+            <div className="text-3xl font-display font-light text-white/80">100%</div>
+            <div className="text-white/30 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Code Integrity</div>
           </div>
           <div>
-            <div className="text-3xl font-display font-light text-white/75">Zero</div>
-            <div className="text-white/20 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Exploits Found</div>
+            <div className="text-3xl font-display font-light text-white/80">Zero</div>
+            <div className="text-white/30 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Exploits Found</div>
           </div>
           <div>
-            <div className="text-3xl font-display font-light text-white/75">2 Major</div>
-            <div className="text-white/20 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Core Initiatives</div>
+            <div className="text-3xl font-display font-light text-white/80">2 Major</div>
+            <div className="text-white/30 text-[10px] font-code uppercase tracking-[0.2em] mt-1.5">Core Initiatives</div>
           </div>
         </div>
       </motion.section>
 
-      <div className="h-20" />
+      <div className="h-10" />
     </div>
   );
 }
