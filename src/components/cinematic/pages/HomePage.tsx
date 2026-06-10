@@ -147,7 +147,7 @@ export function HomePage() {
                 Get In Touch
               </motion.button>
 
-              {/* Secondary CTA — Resume (Elevated for Recruiters) */}
+              {/* Secondary CTA — View Resume */}
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
@@ -156,13 +156,28 @@ export function HomePage() {
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span>Resume</span>
+                <span>View Resume</span>
                 <svg className="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </motion.a>
 
-              {/* Tertiary CTA — View Projects */}
+              {/* Tertiary CTA — Download Resume */}
+              <motion.a
+                href="/resume.pdf"
+                download="Yashraj_Kuyate_Resume.pdf"
+                className="px-7 py-3 bg-white/[0.02] border border-white/[0.06] rounded-lg text-white/60 text-sm tracking-wider uppercase font-display hover:bg-white/[0.05] hover:border-white/12 hover:text-white/80 transition-all cursor-pointer flex items-center gap-2"
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Download Resume</span>
+                <svg className="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </motion.a>
+
+              {/* Quaternary CTA — View Projects */}
               <motion.button
                 className="px-7 py-3 bg-white/[0.02] border border-white/[0.06] rounded-lg text-white/60 text-sm tracking-wider uppercase font-display hover:bg-white/[0.05] hover:border-white/12 hover:text-white/80 transition-all cursor-pointer"
                 whileHover={{ scale: 1.02, y: -1 }}

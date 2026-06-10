@@ -15,17 +15,60 @@ type ProjectData = {
   features?: string[];
   roles?: string[];
   url?: string;
+  isFlagship?: boolean;
+  ctaLabel?: string;
+  techGroups?: { label: string; tags: string[] }[];
+  githubUrl?: string;
+  demoUrl?: string;
+  caseStudyUrl?: string;
+  outcome?: string;
 };
 
 const projects: ProjectData[] = [
   {
+    id: 'fiduscan',
+    title: 'FiduScan — AI-Powered Digital Media Authenticity Platform',
+    category: 'Flagship Project',
+    year: '2025 - Present',
+    description: 'Enterprise-grade forensic intelligence platform that verifies digital media authenticity through AI-powered analysis, blockchain-backed evidence verification, secure chain-of-custody management, and enterprise investigation workflows.',
+    tags: ['Next.js', 'React', 'Three.js', 'FastAPI', 'Python', 'PostgreSQL', 'Polygon', 'Vision Transformers', 'Wav2Vec2'],
+    metrics: { ai: 'Vision/Swin/Wav2Vec2', infra: 'Cloudflare R2', blockchain: 'Polygon', architecture: 'FastAPI/Next.js' },
+    features: [
+      'AI Authenticity Detection',
+      'Deepfake Detection',
+      'Evidence Management',
+      'Blockchain Verification',
+      'Enterprise Security',
+      'Team Collaboration',
+      'Case Management',
+      'Public APIs & SDKs'
+    ],
+    techGroups: [
+      { label: 'Frontend', tags: ['Next.js', 'TypeScript', 'React', 'Three.js', 'React Three Fiber', 'Framer Motion'] },
+      { label: 'Backend', tags: ['FastAPI', 'Python', 'SQLAlchemy', 'PostgreSQL'] },
+      { label: 'Infrastructure', tags: ['Cloudflare R2', 'Stripe', 'Resend', 'Polygon Blockchain'] },
+      { label: 'AI/ML', tags: ['Vision Transformers', 'Swin Transformer', 'Wav2Vec2', 'TimeSformer'] }
+    ],
+    roles: [
+      'AI Research',
+      'Smart Contract Dev',
+      'Backend Systems',
+      'Frontend Architecture'
+    ],
+    demoUrl: 'https://frontend-nu-ten-16.vercel.app',
+    githubUrl: 'https://github.com/Yashraj2050',
+    outcome: 'Deployed alpha to limited research group, achieving robust detection accuracy on synthetic media and deepfakes.',
+    isFlagship: true,
+    ctaLabel: 'Launch FiduScan'
+  },
+  {
     id: 'trace',
     title: 'Trace — AI-Powered Environmental Intelligence Platform',
-    category: 'AI / Full-Stack',
-    year: '2025 - Present',
-    description: 'AI-powered environmental intelligence platform that helps users understand, track, and reduce their carbon footprint through personalized insights, OCR-powered emission analysis, and sustainability-focused habit tracking.',
-    tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'GSAP', 'Supabase', 'PostgreSQL', 'Google Gemini AI', 'OCR Pipeline', 'Vercel'],
-    metrics: { ai: 'Gemini OCR', database: 'Supabase', architecture: 'Next.js 15' },
+    category: 'Flagship Project',
+    year: '2026',
+    description: 'AI-powered environmental intelligence platform helping users understand, track, and reduce their carbon footprint through OCR-powered analysis, personalized AI guidance, and sustainability-focused insights.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'GSAP', 'Supabase', 'PostgreSQL', 'Gemini AI'],
+    metrics: { ai: 'Gemini OCR', database: 'Supabase', architecture: 'Next.js' },
     features: [
       'AI Sustainability Coach',
       'OCR Utility Bill Analysis',
@@ -34,6 +77,10 @@ const projects: ProjectData[] = [
       'Sustainability Habit Tracking',
       'Analytics Dashboard',
       'PDF Report Generation'
+    ],
+    techGroups: [
+      { label: 'Frontend', tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'GSAP'] },
+      { label: 'Backend & Data', tags: ['Supabase', 'PostgreSQL', 'Gemini AI'] }
     ],
     roles: [
       'Product Strategy',
@@ -44,18 +91,11 @@ const projects: ProjectData[] = [
       'AI Integration',
       'Deployment'
     ],
-    url: 'https://trace-liart-seven.vercel.app'
-  },
-  {
-    id: 1,
-    title: 'Fiduscan — AI Deepfake & Content Detection',
-    category: 'AI / Blockchain',
-    year: '2025 - Present',
-    description: 'AI-powered deepfake media detection system paired with Ethereum smart contracts to ensure cryptographic provenance and authenticity validation.',
-    tags: ['TensorFlow', 'PyTorch', 'XceptionNet', 'MesoNet', 'Web3.py', 'Ethereum', 'OpenCV'],
-    metrics: { models: 'MesoNet/XceptionNet', security: 'Tamper-Proof', blockchain: 'Ethereum' },
-    features: ['Blockchain Fingerprinting', 'MesoNet Validation', 'Ethereum Smart Contracts', 'Real-time Video Analysis'],
-    roles: ['AI Research', 'Smart Contract Dev', 'Backend Systems']
+    demoUrl: 'https://trace-liart-seven.vercel.app',
+    githubUrl: 'https://github.com/Yashraj2050',
+    outcome: 'Currently actively developed, featuring functional Gemini OCR parsing for utility bills and automated carbon footprint scoring.',
+    isFlagship: true,
+    ctaLabel: 'Launch Trace'
   },
   {
     id: 2,
@@ -92,7 +132,6 @@ interface ProjectModalProps {
 }
 
 function ProjectModal({ project, onClose }: ProjectModalProps) {
-  // Lock body scroll
   useEffect(() => {
     if (project) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'auto';
@@ -109,13 +148,11 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
-          {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-[#020204]/80 backdrop-blur-md cursor-pointer"
             onClick={onClose}
           />
 
-          {/* Modal Content */}
           <motion.div
             className="relative w-full max-w-4xl max-h-[90vh] bg-[#06060a]/95 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
             initial={{ y: 40, scale: 0.95 }}
@@ -123,7 +160,6 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             exit={{ y: 20, scale: 0.95 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Header Image / Glow */}
             <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
             
             <button 
@@ -141,24 +177,42 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.title}
               </h2>
               
-              <p className="text-white/60 text-base leading-relaxed font-code mb-10 max-w-2xl">
+              <p className="text-white/60 text-base leading-relaxed font-code mb-8 max-w-2xl">
                 {project.description}
               </p>
 
-              {project.url && (
-                <a 
-                  href={project.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#06060a] rounded-lg text-sm font-display font-semibold tracking-[0.1em] uppercase hover:bg-white/90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)] mb-12 cursor-pointer"
-                >
-                  Launch Live Project
-                  <span className="text-lg leading-none">↗</span>
-                </a>
+              {project.outcome && (
+                <div className="mb-10 p-5 rounded-lg border border-emerald-500/10 bg-emerald-500/[0.02] max-w-3xl">
+                  <h4 className="text-emerald-400/60 text-[10px] font-code tracking-[0.2em] uppercase mb-2">Project Outcome</h4>
+                  <p className="text-emerald-50/70 text-sm font-code leading-relaxed">{project.outcome}</p>
+                </div>
               )}
 
+              <div className="flex flex-wrap items-center gap-4 mb-12">
+                {(project.demoUrl || project.url) && (
+                  <a 
+                    href={project.demoUrl || project.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#06060a] rounded-lg text-sm font-display font-semibold tracking-[0.1em] uppercase hover:bg-white/90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)] cursor-pointer"
+                  >
+                    {project.ctaLabel || 'Launch Live Project'}
+                    <span className="text-lg leading-none">↗</span>
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a 
+                    href={project.githubUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-white/[0.04] border border-white/15 text-white/90 rounded-lg text-sm font-display font-semibold tracking-[0.1em] uppercase hover:bg-white/[0.08] hover:border-white/30 transition-all cursor-pointer"
+                  >
+                    View Repository
+                  </a>
+                )}
+              </div>
+
               <div className="grid md:grid-cols-2 gap-12 border-t border-white/[0.05] pt-10">
-                {/* Left Col */}
                 <div className="space-y-10">
                   {project.features && (
                     <div>
@@ -188,16 +242,33 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                   )}
                 </div>
 
-                {/* Right Col */}
                 <div>
                   <h4 className="text-white/30 text-[10px] font-code tracking-[0.2em] uppercase mb-5">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2 mb-10">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="px-3 py-1.5 bg-[#06060a] border border-white/10 rounded text-white/70 text-xs font-code tracking-wide">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  
+                  {project.techGroups ? (
+                    <div className="space-y-6 mb-10">
+                      {project.techGroups.map((group, i) => (
+                        <div key={i}>
+                          <h5 className="text-white/20 text-[9px] font-code tracking-wider uppercase mb-3">{group.label}</h5>
+                          <div className="flex flex-wrap gap-2">
+                            {group.tags.map((tag, j) => (
+                              <span key={j} className="px-3 py-1.5 bg-[#06060a] border border-white/10 rounded text-white/70 text-xs font-code tracking-wide">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2 mb-10">
+                      {project.tags.map((tag, i) => (
+                        <span key={i} className="px-3 py-1.5 bg-[#06060a] border border-white/10 rounded text-white/70 text-xs font-code tracking-wide">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   <h4 className="text-white/30 text-[10px] font-code tracking-[0.2em] uppercase mb-5">Metrics & Architecture</h4>
                   <div className="grid grid-cols-2 gap-4">
@@ -220,18 +291,18 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
 
 interface ProjectCardProps {
   project: ProjectData;
-  index: number;
+  index?: number;
   onClick: (p: ProjectData) => void;
 }
 
-function FeaturedProjectCard({ project, onClick }: { project: ProjectData, onClick: (p: ProjectData) => void }) {
+function FeaturedProjectCard({ project, onClick }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   return (
     <motion.div
       ref={cardRef}
-      className="group relative col-span-1 md:col-span-2 mb-8"
+      className="group relative w-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -241,11 +312,9 @@ function FeaturedProjectCard({ project, onClick }: { project: ProjectData, onCli
       onClick={() => onClick(project)}
     >
       <div className="relative h-full p-8 md:p-12 rounded-2xl border border-white/[0.08] overflow-hidden cursor-pointer bg-[#08080c]/60 backdrop-blur-xl transition-all duration-700 hover:border-white/20 hover:bg-[#0a0a0f]/80 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-        {/* Glow */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
              style={{ background: 'radial-gradient(circle at 70% 30%, rgba(255,255,255,0.03) 0%, transparent 60%)' }} />
 
-        {/* Cinematic Scanlines */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none opacity-20" />
 
         <div className="relative z-10 grid md:grid-cols-5 gap-8 items-center">
@@ -254,9 +323,6 @@ function FeaturedProjectCard({ project, onClick }: { project: ProjectData, onCli
               <span className="px-2.5 py-1 bg-white text-[#06060a] text-[9px] font-display font-bold uppercase tracking-[0.2em] rounded-sm">
                 Flagship Project
               </span>
-              <span className="text-white/40 text-[10px] font-code tracking-[0.2em] uppercase">
-                {project.category}
-              </span>
             </div>
             
             <h3 className="text-white/95 text-3xl md:text-5xl font-display font-light leading-tight mb-5 group-hover:text-white transition-colors duration-500">
@@ -264,30 +330,41 @@ function FeaturedProjectCard({ project, onClick }: { project: ProjectData, onCli
               <span className="block text-2xl md:text-3xl text-white/50 mt-1">— {project.title.split('—')[1]?.trim()}</span>
             </h3>
             
-            <p className="text-white/50 text-sm md:text-base leading-relaxed mb-8 font-code max-w-xl group-hover:text-white/60 transition-colors duration-500">
+            <p className="text-white/50 text-sm md:text-base leading-relaxed font-code max-w-xl group-hover:text-white/60 transition-colors duration-500">
               {project.description}
             </p>
-
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tags.slice(0, 5).map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-white/[0.03] border border-white/[0.08] text-white/60 text-[10px] font-code uppercase tracking-wider rounded transition-colors group-hover:border-white/15">
-                  {tag}
-                </span>
-              ))}
-              {project.tags.length > 5 && (
-                <span className="px-3 py-1 bg-transparent text-white/30 text-[10px] font-code uppercase tracking-wider flex items-center">
-                  +{project.tags.length - 5} more
-                </span>
-              )}
-            </div>
             
-            <motion.div 
-              className="inline-flex items-center gap-3 text-xs font-code text-white/60 group-hover:text-white transition-colors duration-300"
-              animate={{ x: isHovered ? 8 : 0 }}
-            >
-              <span className="uppercase tracking-[0.15em] border-b border-white/20 pb-0.5">Explore Architecture</span>
-              <span className="text-lg leading-none">→</span>
-            </motion.div>
+            <div className="flex flex-wrap items-center gap-3 mt-8">
+              {project.demoUrl && (
+                <a 
+                  href={project.demoUrl} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={e => e.stopPropagation()} 
+                  className="px-5 py-2.5 bg-white text-[#06060a] rounded text-[10px] font-display font-semibold uppercase tracking-widest hover:bg-white/90 transition-all flex items-center gap-2"
+                >
+                  Live Demo ↗
+                </a>
+              )}
+              {project.githubUrl && (
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={e => e.stopPropagation()} 
+                  className="px-5 py-2.5 bg-white/[0.04] border border-white/15 rounded text-white/80 text-[10px] font-display font-semibold uppercase tracking-widest hover:bg-white/[0.08] hover:border-white/30 transition-all flex items-center gap-2"
+                >
+                  GitHub
+                </a>
+              )}
+              <motion.div 
+                className="inline-flex items-center gap-2 text-[10px] font-code text-white/40 group-hover:text-white transition-colors duration-300 ml-auto md:ml-4"
+                animate={{ x: isHovered ? 4 : 0 }}
+              >
+                <span className="uppercase tracking-[0.15em] border-b border-white/20 pb-0.5">Tech Stack & Case Study</span>
+                <span className="text-lg leading-none">→</span>
+              </motion.div>
+            </div>
           </div>
 
           <div className="md:col-span-2 hidden md:block">
@@ -309,7 +386,7 @@ function FeaturedProjectCard({ project, onClick }: { project: ProjectData, onCli
   );
 }
 
-function ProjectCard({ project, index, onClick }: ProjectCardProps) {
+function ProjectCard({ project, index = 0, onClick }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -328,8 +405,6 @@ function ProjectCard({ project, index, onClick }: ProjectCardProps) {
       <div className="relative h-full p-7 rounded-xl border border-white/[0.04] overflow-hidden cursor-pointer bg-[#08080c]/50 backdrop-blur-md transition-all duration-500 group-hover:border-white/10 group-hover:bg-[#0a0a0f]/60">
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
           style={{ background: 'radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 60%)' }} />
-        <div className="absolute top-3 left-3 w-3 h-3 border-l border-t border-white/0 group-hover:border-white/15 transition-all duration-500 rounded-tl" />
-        <div className="absolute bottom-3 right-3 w-3 h-3 border-r border-b border-white/0 group-hover:border-white/15 transition-all duration-500 rounded-br" />
 
         <div className="relative z-10">
           <div className="flex items-start justify-between mb-5">
@@ -362,14 +437,6 @@ function ProjectCard({ project, index, onClick }: ProjectCardProps) {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {project.tags.slice(0,4).map((tag) => (
-              <span key={tag} className="px-2.5 py-1 text-[10px] text-white/40 border border-white/[0.05] rounded font-code uppercase tracking-wider">
-                {tag}
-              </span>
-            ))}
-          </div>
-
           <motion.div
             className="flex items-center gap-1.5 text-[10px] font-code text-white/30 group-hover:text-white/60 transition-colors duration-300"
             animate={{ x: isHovered ? 4 : 0 }}
@@ -390,13 +457,11 @@ export function ProjectsPage() {
 
   const categories = ['AI', 'Frontend', 'Freelance', 'Automation'];
   const filteredProjects = filter
-    ? projects.filter((p) => p.category.toLowerCase().includes(filter.toLowerCase()))
+    ? projects.filter((p) => p.category.toLowerCase().includes(filter.toLowerCase()) || p.tags.some(t => t.toLowerCase().includes(filter.toLowerCase())))
     : projects;
 
-  // Separate the featured project from the rest
-  const featuredProject = projects[0]; // Trace is always first
-  const standardProjects = filteredProjects.filter(p => p.id !== featuredProject.id);
-  const showFeatured = !filter || featuredProject.category.toLowerCase().includes(filter.toLowerCase());
+  const flagshipProjects = filteredProjects.filter(p => p.isFlagship);
+  const standardProjects = filteredProjects.filter(p => !p.isFlagship);
 
   return (
     <>
@@ -420,14 +485,31 @@ export function ProjectsPage() {
           ))}
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-5">
-          {showFeatured && (
-            <FeaturedProjectCard project={featuredProject} onClick={setSelectedProject} />
-          )}
-          {standardProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} onClick={setSelectedProject} />
-          ))}
-        </div>
+        {flagshipProjects.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-white/40 text-[10px] font-code tracking-[0.3em] uppercase mb-6 border-b border-white/[0.04] pb-4">
+              Flagship Projects
+            </h2>
+            <div className="flex flex-col gap-8">
+              {flagshipProjects.map((project) => (
+                <FeaturedProjectCard key={project.id} project={project} onClick={setSelectedProject} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {standardProjects.length > 0 && (
+          <div>
+            <h2 className="text-white/40 text-[10px] font-code tracking-[0.3em] uppercase mb-6 border-b border-white/[0.04] pb-4">
+              Other Deployments
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5">
+              {standardProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} onClick={setSelectedProject} />
+              ))}
+            </div>
+          </div>
+        )}
 
         <motion.section className="mt-20 py-14 border-t border-white/[0.04]" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-left md:text-center">

@@ -120,6 +120,38 @@ export function AboutPage() {
               <span className="text-white/80 text-sm font-display tracking-wide">Pune, India (Remote OK)</span>
             </div>
           </motion.div>
+
+          {/* Connect & Resume Actions */}
+          <motion.div className="flex flex-wrap items-center gap-4 mt-8" variants={fadeUp}>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 bg-white/[0.04] border border-white/20 rounded-lg text-white/90 text-xs tracking-wider uppercase font-display hover:bg-white/[0.08] hover:border-white/30 transition-all cursor-pointer flex items-center gap-2"
+            >
+              <span>View Resume</span>
+              <svg className="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Yashraj_Kuyate_Resume.pdf"
+              className="px-6 py-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg text-white/60 text-xs tracking-wider uppercase font-display hover:bg-white/[0.05] hover:border-white/12 hover:text-white/80 transition-all cursor-pointer flex items-center gap-2"
+            >
+              <span>Download Resume</span>
+            </a>
+            
+            <div className="w-px h-8 bg-white/[0.1] mx-2 hidden sm:block" />
+
+            <a href="https://linkedin.com/in/yashraj-kuyate-b24b0331b" target="_blank" rel="noreferrer" className="w-10 h-10 flex items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 transition-all text-white/50 hover:text-white/90">
+              in
+            </a>
+            <a href="https://github.com/Yashraj2050" target="_blank" rel="noreferrer" className="w-10 h-10 flex items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 transition-all text-white/50 hover:text-white/90">
+              gh
+            </a>
+          </motion.div>
         </motion.div>
       </motion.section>
 
@@ -274,6 +306,13 @@ export function AboutPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3.5 bg-white/[0.04] border border-white/15 rounded-lg text-white/80 text-sm tracking-[0.15em] uppercase font-display hover:bg-white/[0.08] hover:border-white/30 transition-all cursor-pointer flex items-center gap-2"
+          >
+            View CV
+          </a>
+          <a
+            href="/resume.pdf"
+            download="Yashraj_Kuyate_Resume.pdf"
+            className="px-8 py-3.5 bg-white/[0.02] border border-white/[0.06] rounded-lg text-white/60 text-sm tracking-[0.15em] uppercase font-display hover:bg-white/[0.05] hover:border-white/15 hover:text-white/80 transition-all cursor-pointer flex items-center gap-2"
           >
             Download CV
           </a>

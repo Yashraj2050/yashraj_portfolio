@@ -160,8 +160,8 @@ export function CinematicNavigation() {
             )}
           </AnimatePresence>
 
-          {/* Resume Download Button (Desktop) */}
-          <div className="mt-8 pt-6 border-t border-white/[0.05]">
+          {/* Resume Actions (Desktop) */}
+          <div className="mt-8 pt-6 border-t border-white/[0.05] flex flex-col gap-2">
             <motion.a
               href="/resume.pdf"
               target="_blank"
@@ -172,13 +172,37 @@ export function CinematicNavigation() {
             >
               <div className="w-6 h-6 flex items-center justify-center rounded bg-white/[0.05] text-white/50 group-hover:text-white/90 transition-colors">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
               <span className="text-[11px] font-medium tracking-widest uppercase text-white/60 group-hover:text-white/95 transition-colors">
-                Resume
+                View CV
               </span>
             </motion.a>
+
+            <motion.a
+              href="/resume.pdf"
+              download="Yashraj_Kuyate_Resume.pdf"
+              className="relative group px-4 py-2.5 flex items-center gap-3 rounded-lg bg-white/[0.02] border border-white/[0.05] hover:border-white/15 hover:bg-white/[0.04] transition-all cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="w-6 h-6 flex items-center justify-center rounded bg-white/[0.05] text-white/50 group-hover:text-white/90 transition-colors">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </div>
+              <span className="text-[11px] font-medium tracking-widest uppercase text-white/60 group-hover:text-white/95 transition-colors">
+                Download CV
+              </span>
+            </motion.a>
+
+            {/* Social Links */}
+            <div className="flex gap-2 px-1 mt-2">
+              <a href="https://linkedin.com/in/yashraj-kuyate-b24b0331b" target="_blank" rel="noreferrer" className="flex-1 py-2 text-center rounded border border-white/[0.05] hover:bg-white/[0.05] text-white/40 hover:text-white/90 transition-colors text-[10px] font-code">IN</a>
+              <a href="https://github.com/Yashraj2050" target="_blank" rel="noreferrer" className="flex-1 py-2 text-center rounded border border-white/[0.05] hover:bg-white/[0.05] text-white/40 hover:text-white/90 transition-colors text-[10px] font-code">GH</a>
+            </div>
           </div>
         </motion.div>
       </motion.nav>
