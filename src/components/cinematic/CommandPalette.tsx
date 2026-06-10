@@ -116,7 +116,7 @@ export function CommandPalette() {
         className="fixed top-5 right-5 z-50 flex items-center gap-2.5 px-3.5 py-2 rounded-lg border border-white/8 bg-[#08080c]/70 backdrop-blur-xl hover:border-white/20 transition-all cursor-pointer group"
       >
         <span className="text-white/55 text-[10px] font-code tracking-wider uppercase group-hover:text-white/80 transition-colors">
-          Navigate
+          ☰ EXPLORE
         </span>
         <kbd className="text-[9px] text-white/35 border border-white/15 rounded px-1.5 py-0.5 font-code">
           ⌘K
