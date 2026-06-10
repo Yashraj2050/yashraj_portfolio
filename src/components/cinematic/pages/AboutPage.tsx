@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { CinematicHeading, CinematicText, SplitText } from '../CinematicTypography';
+import { useCinematicStore } from '@/lib/cinematic/store';
 
 const timeline = [
   {
@@ -71,6 +72,7 @@ export function AboutPage() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const valuesInView = useInView(valuesRef, { once: true, margin: '-80px' });
   const timelineInView = useInView(timelineRef, { once: true, margin: '-80px' });
+  const { triggerPageTransition } = useCinematicStore();
 
   return (
     <div className="min-h-screen py-20 pb-28 md:pb-20">
@@ -102,6 +104,22 @@ export function AboutPage() {
           <CinematicText delay={0.5} className="font-code text-sm">
             Whether optimizing neural models for media validation or engineering robust web applications using React and Next.js, I approach programming through the lens of technical discipline, absolute precision, and system security.
           </CinematicText>
+          
+          {/* Quick Recruiter Summary */}
+          <motion.div className="mt-10 pt-8 border-t border-white/[0.05] flex flex-wrap gap-x-12 gap-y-6" variants={fadeUp}>
+            <div>
+              <span className="text-white/30 text-[9px] font-code uppercase tracking-[0.2em] block mb-1.5">Focus</span>
+              <span className="text-white/80 text-sm font-display tracking-wide">AI Security & Full-Stack</span>
+            </div>
+            <div>
+              <span className="text-white/30 text-[9px] font-code uppercase tracking-[0.2em] block mb-1.5">Experience</span>
+              <span className="text-white/80 text-sm font-display tracking-wide">2+ Years (Freelance)</span>
+            </div>
+            <div>
+              <span className="text-white/30 text-[9px] font-code uppercase tracking-[0.2em] block mb-1.5">Location</span>
+              <span className="text-white/80 text-sm font-display tracking-wide">Pune, India (Remote OK)</span>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.section>
 
@@ -232,6 +250,35 @@ export function AboutPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* Visitor Journey CTA */}
+      <motion.section
+        className="py-16 border-t border-white/[0.04] text-center flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <p className="text-white/40 text-sm font-code mb-8 max-w-md mx-auto">
+          See these principles applied in production environments.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <button
+            onClick={() => triggerPageTransition('projects')}
+            className="px-8 py-3.5 bg-white text-[#06060a] rounded-lg text-sm tracking-[0.15em] uppercase font-display font-semibold hover:bg-white/90 transition-all cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          >
+            View Projects
+          </button>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3.5 bg-white/[0.04] border border-white/15 rounded-lg text-white/80 text-sm tracking-[0.15em] uppercase font-display hover:bg-white/[0.08] hover:border-white/30 transition-all cursor-pointer flex items-center gap-2"
+          >
+            Download CV
+          </a>
+        </div>
+      </motion.section>
 
       <div className="h-10" />
     </div>

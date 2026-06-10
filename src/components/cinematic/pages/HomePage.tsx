@@ -13,11 +13,23 @@ const stats = [
   { value: 1500, suffix: '+', label: 'Research Impressions' },
 ];
 
-const skills = [
-  'Ethical Hacking', 'Zero-Trust Architecture', 'Onion Routing',
-  'Next.js', 'React', 'Tailwind CSS', 'Framer Motion',
-  'Deep Learning', 'Computer Vision', 'XceptionNet', 'MesoNet',
-  'Ethereum', 'Web3.py', 'Python', 'C++', 'Hardware Diagnostics',
+const skillCategories = [
+  {
+    title: 'Security & Systems',
+    skills: ['Ethical Hacking', 'Zero-Trust Architecture', 'Onion Routing', 'Hardware Diagnostics']
+  },
+  {
+    title: 'AI & Data Science',
+    skills: ['Deep Learning', 'Computer Vision', 'XceptionNet', 'MesoNet', 'Python', 'C++']
+  },
+  {
+    title: 'Frontend Engineering',
+    skills: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion']
+  },
+  {
+    title: 'Web3 & Blockchain',
+    skills: ['Ethereum', 'Web3.py']
+  }
 ];
 
 // Stagger animation container
@@ -135,30 +147,30 @@ export function HomePage() {
                 Get In Touch
               </motion.button>
 
-              {/* Secondary CTA — bordered */}
+              {/* Secondary CTA — Resume (Elevated for Recruiters) */}
+              <motion.a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-3 bg-white/[0.04] border border-white/20 rounded-lg text-white/90 text-sm tracking-wider uppercase font-display hover:bg-white/[0.08] hover:border-white/30 transition-all cursor-pointer flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Resume</span>
+                <svg className="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </motion.a>
+
+              {/* Tertiary CTA — View Projects */}
               <motion.button
-                className="px-7 py-3 bg-white/[0.04] border border-white/15 rounded-lg text-white/80 text-sm tracking-wider uppercase font-display hover:bg-white/[0.08] hover:border-white/25 transition-all cursor-pointer"
+                className="px-7 py-3 bg-white/[0.02] border border-white/[0.06] rounded-lg text-white/60 text-sm tracking-wider uppercase font-display hover:bg-white/[0.05] hover:border-white/12 hover:text-white/80 transition-all cursor-pointer"
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => triggerPageTransition('projects')}
               >
                 View Projects
               </motion.button>
-
-              {/* Tertiary CTA — subtle */}
-              <motion.a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-7 py-3 bg-white/[0.02] border border-white/[0.06] rounded-lg text-white/55 text-sm tracking-wider uppercase font-display hover:bg-white/[0.05] hover:border-white/12 hover:text-white/75 transition-all cursor-pointer flex items-center gap-2"
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>Resume</span>
-                <svg className="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </motion.a>
             </motion.div>
           </div>
 
@@ -228,27 +240,40 @@ export function HomePage() {
         variants={stagger}
       >
         <motion.div variants={fadeUp}>
-          <h3 className="text-white/40 text-[11px] font-code tracking-[0.3em] uppercase mb-8">
-            Core Skills
+          <h3 className="text-white/40 text-[11px] font-code tracking-[0.3em] uppercase mb-10">
+            Core Competencies
           </h3>
         </motion.div>
 
-        <div className="flex flex-wrap gap-2.5">
-          {skills.map((skill, index) => (
-            <motion.span
-              key={skill}
-              className="px-4 py-2 text-xs text-white/45 border border-white/[0.06] rounded-md hover:border-white/20 hover:text-white/80 hover:bg-white/[0.02] transition-all cursor-default font-code"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: index * 0.025,
-                duration: 0.4,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {skillCategories.map((category, catIndex) => (
+            <motion.div
+              key={category.title}
+              className="flex flex-col gap-4"
+              variants={fadeUp}
             >
-              {skill}
-            </motion.span>
+              <h4 className="text-white/60 text-[10px] font-code tracking-[0.2em] uppercase border-b border-white/[0.05] pb-2">
+                {category.title}
+              </h4>
+              <div className="flex flex-wrap gap-2.5">
+                {category.skills.map((skill, index) => (
+                  <motion.span
+                    key={skill}
+                    className="px-4 py-2 text-xs text-white/55 border border-white/[0.06] rounded-md hover:border-white/20 hover:text-white/90 hover:bg-white/[0.02] transition-all cursor-default font-code bg-[#08080c]/30"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      delay: (catIndex * 0.1) + (index * 0.025),
+                      duration: 0.4,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </motion.section>
@@ -352,6 +377,64 @@ export function HomePage() {
             />
           </motion.div>
         </div>
+      </motion.section>
+
+      {/* ==================== CURRENTLY BUILDING ==================== */}
+      <motion.section
+        className="py-16 border-t border-white/[0.04]"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={stagger}
+      >
+        <motion.div variants={fadeUp}>
+          <h3 className="text-white/40 text-[11px] font-code tracking-[0.3em] uppercase mb-8">
+            Active R&D
+          </h3>
+        </motion.div>
+
+        <motion.div
+          className="group relative p-8 rounded-xl border border-white/[0.04] bg-[#08080c]/50 overflow-hidden"
+          variants={fadeUp}
+        >
+          {/* Subtle pulse animation for "active" feeling */}
+          <div className="absolute top-8 right-8 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500/50 animate-pulse" />
+            <span className="text-[9px] font-code text-emerald-500/50 uppercase tracking-[0.2em]">Live</span>
+          </div>
+
+          <div className="relative z-10 max-w-2xl">
+            <h4 className="text-white/90 text-xl font-display font-light mb-3">
+              AI Security Integrations
+            </h4>
+            <p className="text-white/50 text-sm leading-relaxed font-code mb-5">
+              Currently prototyping automated security agents capable of running static code analysis and identifying zero-day vulnerabilities in Next.js web applications, utilizing the latest foundational models.
+            </p>
+            <div className="flex gap-2">
+              <span className="px-3 py-1 text-[9px] text-emerald-400/70 border border-emerald-500/20 rounded font-code uppercase bg-emerald-500/5">Agentic Workflows</span>
+              <span className="px-3 py-1 text-[9px] text-white/40 border border-white/10 rounded font-code uppercase">Security Automation</span>
+            </div>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      {/* ==================== NEXT STEP / VISITOR JOURNEY ==================== */}
+      <motion.section
+        className="py-16 border-t border-white/[0.04] text-center flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <p className="text-white/40 text-sm font-code mb-8 max-w-md mx-auto">
+          Interested in the technical methodology behind the work?
+        </p>
+        <button
+          onClick={() => triggerPageTransition('about')}
+          className="px-8 py-3.5 bg-white text-[#06060a] rounded-lg text-sm tracking-[0.15em] uppercase font-display font-semibold hover:bg-white/90 transition-all cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+        >
+          Read the full story
+        </button>
       </motion.section>
 
       {/* Bottom spacer for mobile nav clearance */}

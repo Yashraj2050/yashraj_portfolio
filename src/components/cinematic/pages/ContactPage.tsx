@@ -131,11 +131,19 @@ export function ContactPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <div className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/70 animate-pulse" />
-              <span className="text-white/50 text-xs font-code">
-                Open to freelance & collaboration
-              </span>
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/70 animate-pulse" />
+                <span className="text-white/70 text-xs font-code tracking-wide">
+                  Open to freelance & collaboration
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                <span className="text-white/40 text-[10px] font-code uppercase tracking-wider">
+                  Response Time: &lt; 24 Hours
+                </span>
+              </div>
             </div>
           </motion.div>
         </motion.section>
@@ -178,7 +186,7 @@ export function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/80 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/20 transition-colors"
+                    className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/90 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all duration-300 focus:shadow-[0_0_15px_rgba(255,255,255,0.03)]"
                     placeholder="Your name"
                   />
                 </div>
@@ -192,7 +200,7 @@ export function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/80 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/20 transition-colors"
+                    className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/90 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all duration-300 focus:shadow-[0_0_15px_rgba(255,255,255,0.03)]"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -208,7 +216,7 @@ export function ContactPage() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/80 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/20 transition-colors"
+                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/90 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all duration-300 focus:shadow-[0_0_15px_rgba(255,255,255,0.03)]"
                   placeholder="What's this about?"
                 />
               </div>
@@ -223,7 +231,7 @@ export function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/80 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/20 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/90 text-xs font-code placeholder-white/15 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all duration-300 focus:shadow-[0_0_15px_rgba(255,255,255,0.03)] resize-none"
                   placeholder="Tell me about your project or inquiry..."
                 />
               </div>
@@ -231,7 +239,7 @@ export function ContactPage() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-white text-[#06060a] rounded-lg text-sm font-display font-semibold tracking-wider uppercase hover:bg-white/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="w-full py-4 bg-white text-[#06060a] rounded-lg text-sm font-display font-semibold tracking-wider uppercase hover:bg-white/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] mt-2"
                 whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.99 }}
               >

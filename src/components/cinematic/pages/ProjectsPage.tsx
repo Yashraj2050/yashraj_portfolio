@@ -83,14 +83,21 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           {/* Header */}
           <div className="flex items-start justify-between mb-5">
             <div>
-              <span className="text-white/40 text-[10px] font-code tracking-[0.2em] uppercase">
-                {project.category}
-              </span>
-              <h3 className="text-white/90 text-xl font-display font-light mt-1.5 leading-snug">
+              <div className="flex items-center gap-3 mb-1.5">
+                <span className="text-white/40 text-[10px] font-code tracking-[0.2em] uppercase">
+                  {project.category}
+                </span>
+                {index === 0 && (
+                  <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-400/80 text-[8px] font-code uppercase tracking-wider rounded border border-emerald-500/20">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <h3 className="text-white/90 text-xl font-display font-light leading-snug">
                 {project.title}
               </h3>
             </div>
-            <span className="text-white/25 text-xs font-code ml-4 shrink-0">{project.year}</span>
+            <span className="text-white/25 text-xs font-code ml-4 shrink-0 mt-1">{project.year}</span>
           </div>
 
           {/* Description */}
@@ -99,11 +106,14 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           </p>
 
           {/* Metrics */}
-          <div className="grid grid-cols-3 gap-2 mb-5 border-t border-b border-white/[0.04] py-4">
+          <div className="grid grid-cols-3 gap-3 mb-6 border-t border-b border-white/[0.04] py-4 bg-white/[0.01]">
             {Object.entries(project.metrics).map(([key, value]) => (
-              <div key={key} className="text-left">
-                <div className="text-white/70 text-xs font-display font-light truncate">{value}</div>
-                <div className="text-white/25 text-[9px] font-code uppercase tracking-wider mt-0.5">{key}</div>
+              <div key={key} className="text-left flex flex-col justify-between">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <span className="text-white/20 text-[8px]">◈</span>
+                  <div className="text-white/25 text-[9px] font-code uppercase tracking-[0.15em] truncate">{key}</div>
+                </div>
+                <div className="text-white/90 text-[13px] font-display font-medium tracking-wide truncate">{value}</div>
               </div>
             ))}
           </div>
